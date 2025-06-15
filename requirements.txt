@@ -1,0 +1,4 @@
+pandas
+ydata-profiling
+pydantic
+scikit-learn
