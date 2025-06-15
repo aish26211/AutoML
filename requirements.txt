@@ -2,3 +2,8 @@ pandas
 ydata-profiling
 pydantic
 scikit-learn
+streamlit
+langchain
+openai
+langchain_communnity
+groq

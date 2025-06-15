@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 from agents.cleaner import clean_data
-from agents.analyzer import analyze_file
+from agents.analyzer import analyze_dataset
 from agents.model_selector import select_model
 from agents.trainer import train_model_and_report
 from agents.tester import test_model_on_data
@@ -25,38 +25,47 @@ if uploaded_file:
     df = pd.read_csv(filepath)
 
     # ========== EDA ==========
+
+    # Call analyzer and show summary
+    analysis_result = analyze_dataset(filepath)
+    analysis = analysis_result["analysis"]
+    target = analysis_result["target_column"]
+
     st.subheader("🔍 Exploratory Data Analysis (EDA)")
     if st.checkbox("Show dataset preview"):
-        st.dataframe(df.head())
+        st.dataframe(analysis_result["df"].head())
 
     if st.checkbox("Show dataset shape"):
-        st.write(f"Rows: {df.shape[0]} | Columns: {df.shape[1]}")
+        st.write(f"Rows: {analysis['shape'][0]} | Columns: {analysis['shape'][1]}")
 
     if st.checkbox("Show data types and missing values"):
         info_df = pd.DataFrame({
-            "Data Type": df.dtypes,
-            "Missing Values": df.isnull().sum(),
-            "Missing %": (df.isnull().mean() * 100).round(2)
+            "Data Type": analysis['dtypes'],
+            "Missing Values": analysis['nulls'],
+            "Unique Values": analysis['unique']
         })
         st.dataframe(info_df)
 
     if st.checkbox("Show descriptive statistics"):
-        st.dataframe(df.describe(include='all').transpose())
+        st.text(analysis['llm_summary'])
 
     if st.checkbox("Show value counts for categorical columns"):
-        cat_cols = df.select_dtypes(include='object').columns
+        cat_cols = [col for col, dtype in analysis['dtypes'].items() if dtype == 'object']
         for col in cat_cols:
             st.markdown(f"**{col}**")
-            st.dataframe(df[col].value_counts())
+            st.dataframe(analysis_result["df"][col].value_counts())
 
     if st.checkbox("Show correlation heatmap"):
-        num_df = df.select_dtypes(include=['number'])
-        if not num_df.empty:
-            fig, ax = plt.subplots(figsize=(10, 6))
-            sns.heatmap(num_df.corr(), annot=True, cmap="coolwarm", ax=ax)
-            st.pyplot(fig)
+        if "correlation_heatmap" in analysis_result["visuals"]:
+            st.pyplot(analysis_result["visuals"]["correlation_heatmap"])
         else:
             st.warning("No numeric columns found for correlation heatmap.")
+
+    if st.checkbox("Show target distribution"):
+        if "target_distribution" in analysis_result["visuals"]:
+            st.pyplot(analysis_result["visuals"]["target_distribution"])
+        else:
+            st.warning("No target column or distribution plot available.")
 
     st.markdown("---")
 
