@@ -3,8 +3,9 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-def test_model_on_data(train_path, target_column, test_path):
+def test_model_on_data(train_path, target_column, test_path, model=None):
     # Load and preprocess train data
     train_df = pd.read_csv(train_path)
     if target_column not in train_df.columns:
@@ -21,8 +22,9 @@ def test_model_on_data(train_path, target_column, test_path):
     # Align columns between training and test data
     X_train, test_X = X_train.align(test_X, join='left', axis=1, fill_value=0)
 
-    # Train the model (you could also load a pre-trained one if saved)
-    model = RandomForestClassifier()
+    # Train the model (or use provided one)
+    if model is None:
+        model = RandomForestClassifier()
     model.fit(X_train, y_train)
 
     # Predict

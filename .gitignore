@@ -1,0 +1,21 @@
+# macOS system files
+.DS_Store
+
+# Python bytecode and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments (if you have one in the project root)
+venv/
+.venv/
+env/
+
+# Editor/IDE specific files (usually ignored unless specifically shared)
+.vscode/
+# If you have specific workspace settings you want to share, you might exclude
+# settings.json but include the folder. For most cases, ignore the whole .vscode/ dir.
+
+# Logs
+*.log

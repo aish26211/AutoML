@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-def select_model(filepath, target_column):
+def select_models(filepath, target_column):
     df = pd.read_csv(filepath)
 
     if target_column not in df.columns:
@@ -10,8 +10,8 @@ def select_model(filepath, target_column):
 
     target_dtype = df[target_column].dtype
 
-    # Simple logic: classification if categorical, regression if numerical
+    # Classification or regression logic
     if df[target_column].nunique() <= 10 or target_dtype == 'object':
-        return "RandomForestClassifier"
+        return ["RandomForestClassifier", "LogisticRegression", "MLPClassifier"]
     else:
-        return "RandomForestRegressor"
+        return ["RandomForestRegressor", "LinearRegression", "MLPRegressor"]
