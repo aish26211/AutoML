@@ -2,6 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/stable/)
 [![Plotly](https://img.shields.io/badge/Plotly-27338C?style=flat&logo=plotly&logoColor=white)](https://plotly.com/)
@@ -11,9 +14,19 @@
 
 ## 🚀 Project Overview
 
-This project is an interactive, end-to-end Automated Machine Learning (AutoML) web application built with Streamlit, designed to streamline the entire data science workflow for tabular data. From data upload and comprehensive exploration to advanced cleaning, model training, evaluation, and interpretability, this app empowers users to build and understand machine learning models without writing a single line of code.
+This project is an interactive, end-to-end Automated Machine Learning (AutoML) web application with a modern React frontend and Python FastAPI backend, designed to streamline the entire data science workflow for tabular data. From data upload and comprehensive exploration to advanced cleaning, model training, evaluation, and interpretability, this app empowers users to build and understand machine learning models without writing a single line of code.
 
 It serves as a powerful tool for quick data insights, rapid prototyping, and understanding model behavior, making machine learning accessible to both data professionals and enthusiasts.
+
+## 🏗️ Architecture
+
+The application follows a modern full-stack architecture:
+
+- **Frontend**: React 18 with TypeScript, Tailwind CSS, and modern UI components
+- **Backend**: Python FastAPI with async support and automatic API documentation
+- **Data Processing**: Pandas, Scikit-learn, and custom ML agents
+- **Visualization**: Recharts for interactive charts and data visualization
+- **File Handling**: Support for CSV and Excel files with drag-and-drop upload
 
 ## ✨ Key Features & Workflow
 
@@ -63,44 +76,118 @@ Understand the "why" behind your model's predictions:
 
 ## 🛠️ Technologies Used
 
+### Frontend
+* **React 18 + TypeScript:** Modern frontend framework with type safety
+* **Tailwind CSS:** Utility-first CSS framework for rapid UI development
+* **Recharts:** Interactive charts and data visualization
+* **React Dropzone:** Drag-and-drop file upload interface
+* **Axios:** HTTP client for API communication
+* **Lucide React:** Beautiful, customizable icons
+
+### Backend
+* **FastAPI:** Modern, fast web framework for building APIs with Python
+* **Uvicorn:** Lightning-fast ASGI server
 * **Python:** The core programming language.
-* **Streamlit:** For creating the interactive web application.
 * **Pandas & NumPy:** For efficient data manipulation and numerical operations.
 * **Scikit-learn:** For machine learning models, preprocessing, and evaluation.
-* **Plotly Express:** For generating interactive and informative visualizations.
-* **ydata-profiling:** For comprehensive automated EDA reports.
-* **SHAP & Streamlit-Shap:** For model interpretability and explanation.
-* **Matplotlib & Seaborn:** For static data visualizations.
+* **Pydantic:** Data validation and settings management using Python type annotations.
 
 ## 🚀 Getting Started
 
-To run this application locally, follow these steps:
+### Prerequisites
+
+- **Node.js** (v16 or higher)
+- **Python** (3.9 or higher)
+- **npm** or **yarn**
+
+### Quick Start
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/](https://github.com/)[YourGitHubUsername]/AutoML.git
-    cd AutoML
+    git clone https://github.com/YourGitHubUsername/AutoML.git
+    cd automl-data-pipeline
     ```
-2.  **Create a virtual environment (recommended):**
+2.  **Install all dependencies:**
     ```bash
-    python -m venv venv
-    # On Windows:
-    .\venv\Scripts\activate
-    # On macOS/Linux:
-    source venv/bin/activate
-    ```
-3.  **Install the required libraries:**
-    ```bash
-    pip install -r requirements.txt # (or pip install streamlit pandas numpy matplotlib seaborn scikit-learn plotly-express ydata-profiling shap streamlit-shap)
-    ```
-    *If you don't have a `requirements.txt` file, you can create one using `pip freeze > requirements.txt` after installing all dependencies, or just use the direct `pip install` command.*
-
-4.  **Run the Streamlit application:**
-    ```bash
-    streamlit run app.py
+    npm run install:all
     ```
 
-    The application will open in your default web browser.
+3.  **Start the development servers:**
+    ```bash
+    npm run dev
+    ```
+
+    This will start both the React frontend (http://localhost:5173) and FastAPI backend (http://localhost:8000)
+
+### Manual Setup
+
+If you prefer to run the frontend and backend separately:
+
+1.  **Backend Setup:**
+    ```bash
+    cd backend
+    pip install -r requirements.txt
+    python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
+    ```
+
+2.  **Frontend Setup:**
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
+    ```
+
+### API Documentation
+
+Once the backend is running, you can access the interactive API documentation at:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+## 📱 Usage
+
+1. **Upload Data**: Drag and drop your CSV or Excel file onto the upload area
+2. **Explore Data**: View dataset overview, column information, and data preview
+3. **Clean Data**: Configure data cleaning options including missing value handling, scaling, and encoding
+4. **Train Models**: Select target column and train various machine learning models
+5. **Analyze Results**: View model performance metrics and feature importance
+6. **Download**: Export cleaned datasets for further use
+
+## 🔧 Development
+
+### Project Structure
+
+```
+automl-data-pipeline/
+├── frontend/                 # React TypeScript frontend
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── services/        # API service layer
+│   │   ├── types/           # TypeScript type definitions
+│   │   └── App.tsx          # Main application component
+│   ├── public/              # Static assets
+│   └── package.json
+├── backend/                 # FastAPI Python backend
+│   ├── agents/              # ML processing modules
+│   ├── data/                # Uploaded datasets
+│   ├── app.py               # FastAPI application
+│   └── requirements.txt
+├── data/                    # Sample datasets
+└── package.json             # Root package.json for scripts
+```
+
+### Available Scripts
+
+- `npm run dev` - Start both frontend and backend in development mode
+- `npm run dev:frontend` - Start only the React frontend
+- `npm run dev:backend` - Start only the FastAPI backend
+- `npm run build` - Build the frontend for production
+- `npm run install:all` - Install dependencies for both frontend and backend
+
+### Adding New Features
+
+1. **Backend**: Add new endpoints in `backend/app.py` and corresponding logic in the `agents/` directory
+2. **Frontend**: Create new components in `frontend/src/components/` and update the API service in `frontend/src/services/api.ts`
+3. **Types**: Update TypeScript interfaces in `frontend/src/types/index.ts`
 
 ## 🤝 Contributing
 
@@ -112,8 +199,22 @@ We welcome contributions! If you have suggestions for improvements, bug reports,
 5.  Push to the branch (`git push origin feature/YourFeature`).
 6.  Open a Pull Request.
 
+### Development Guidelines
+
+- Follow TypeScript best practices for frontend development
+- Use FastAPI's automatic validation and documentation features
+- Maintain consistent code formatting with Prettier (frontend) and Black (backend)
+- Write meaningful commit messages
+- Update documentation when adding new features
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with modern web technologies and best practices
+- Inspired by the need for accessible machine learning tools
+- Thanks to the open-source community for the amazing libraries and frameworks
 
 ---
