@@ -4,7 +4,7 @@ import { DataPreview } from './components/DataPreview';
 import { DataCleaning } from './components/DataCleaning';
 import { ModelTraining } from './components/ModelTraining';
 import { apiService } from './services/api';
-import { DatasetInfo, ModelResult, FeatureImportance, CleaningOptions } from './types';
+import type { DatasetInfo, ModelResult, FeatureImportance, CleaningOptions } from './types';
 import { AlertCircle, CheckCircle, Database } from 'lucide-react';
 
 function App() {

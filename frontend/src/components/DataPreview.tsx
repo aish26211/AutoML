@@ -1,6 +1,6 @@
 import React from 'react';
 import { Eye, Info, BarChart3 } from 'lucide-react';
-import { DatasetInfo } from '../types';
+import type { DatasetInfo } from '../types';
 
 interface DataPreviewProps {
   data: any[];

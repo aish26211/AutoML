@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DatasetInfo, ModelResult, CleaningOptions } from '../types';
+import type { DatasetInfo, ModelResult, CleaningOptions } from '../types';
 
 const API_BASE_URL = 'http://localhost:8000/api';
 
