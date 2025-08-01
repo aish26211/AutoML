@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Brain, Target, TrendingUp } from 'lucide-react';
-import { ModelResult, FeatureImportance } from '../types';
+import type { ModelResult, FeatureImportance } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ModelTrainingProps {
