@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Trash2, Download, Settings } from 'lucide-react';
-import { CleaningOptions } from '../types';
+import type { CleaningOptions } from '../types';
 
 interface DataCleaningProps {
   onCleanData: (options: CleaningOptions) => void;
