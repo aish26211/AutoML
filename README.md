@@ -101,7 +101,7 @@ Understand the "why" behind your model's predictions:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YourGitHubUsername/AutoML.git
+    git clone https://github.com/aish26211/AutoML.git
     cd automl-data-pipeline
     ```
 2.  **Install all dependencies:**
@@ -178,7 +178,7 @@ We welcome contributions! If you have suggestions for improvements, bug reports,
 - Update documentation when adding new features
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with modern web technologies and best practices
 - Inspired by the need for accessible machine learning tools
