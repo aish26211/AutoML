@@ -1,0 +1,6 @@
+
+.env
+backend/.env
+uploads/
+*.joblib
+*.pkl
