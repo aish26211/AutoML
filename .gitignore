@@ -4,3 +4,9 @@ backend/.env
 uploads/
 *.joblib
 *.pkl
+
+.env
+backend/.env
+uploads/
+*.joblib
+*.pkl
